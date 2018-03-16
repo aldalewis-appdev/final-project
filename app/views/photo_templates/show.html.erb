@@ -1,0 +1,114 @@
+<h1>
+  Details for <%= @photo.caption %>
+</h1>
+
+<% if current_user.id == @photo.user_id %>
+<a href="/photos/<%= @photo.id %>/edit">
+  Edit listing
+</a>
+<% end %>
+<hr>
+
+<dl>
+  <dt>
+    Address
+  </dt>
+  <dd>
+    <%= @photo.address %>
+  </dd>
+  
+  <dt>
+    Rent
+  </dt>
+  <dd>
+    <%= @photo.rent %>
+  </dd>
+  
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <img src="<%= @photo.image %>" width="300">
+  </dd>
+
+  <dt>
+    Available from
+  </dt>
+  <dd>
+    <%= @photo.start_date %>
+  </dd>
+
+<dt>
+    Available through
+  </dt>
+  <dd>
+    <%= @photo.end_date %>
+  </dd>
+
+  <dt>
+    Contact
+  </dt>
+  <dd>
+    <%= @photo.user_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@photo.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@photo.updated_at) %> ago
+  </dd>
+  <dt>
+  </dt>
+  <dd>
+  <form action="/create_comment" method="post">
+  <!-- Label and input for photo_id -->
+  <div class="form-group">
+    <label for="photo_id">
+    </label>
+
+    <input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= @photo.id %>">
+  </div>
+
+  <!-- Label and input for body -->
+  <div class="form-group">
+    <label for="body">
+    Send message to contact
+    </label>
+
+    <textarea id="body" name="body" class="form-control" rows="3"><%= @comment.try(:body) %></textarea>
+  </div>
+
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id">
+    </label>
+
+    <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= @photo.user_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Send message
+  </button>
+</form>
+  </dd>
+</dl>
+
+<% if current_user.id == @photo.user_id %>
+<a href="/delete_photo/<%= @photo.id %>">
+  Delete listing
+</a>
+<% else %>
+<% end %>
+<hr>
+
+<a href="/photos">
+  Go back
+</a>

@@ -1,0 +1,44 @@
+<h1>
+  <%= current_user.username %>'s saved rentals
+</h1>
+
+<a href="/users/<%= current_user.id %>/edit">
+  Edit user profile
+</a>
+<hr>
+
+<dl>
+  <dt>
+    Email
+  </dt>
+  <dd>
+    <%= current_user.email %>
+  </dd>
+
+<table>
+  <tr>
+    <td>Photo</td>
+  </tr>
+   <% current_user.likes.each do |like| %>
+  <tr>
+    <td>
+      <%= like.photo.caption %>
+      </td>
+      </tr>
+      <tr>
+    <td>
+      <img src="<%= like.photo.image %>" width="300">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Address here
+    </td>
+  </tr>
+  <% end %>
+   </table
+   
+ </div>
+ 
+
+</dl>

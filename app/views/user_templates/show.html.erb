@@ -1,0 +1,49 @@
+<h1>
+  <%= @user.username %>'s profile
+</h1>
+
+<% if current_user.id == @user.id %>
+<a href="/users/edit">
+  Edit user profile
+</a>
+<% end %>
+
+<hr>
+
+<dl>
+  <dt>
+    Email
+  </dt>
+  <dd>
+    <%= @user.email %>
+  </dd>
+
+<table>
+  <tr>
+    <td>Rentals</td>
+  </tr>
+   <% @user.photos.each do |photo| %>
+  <tr>
+    <td>
+      <%= photo.caption %>
+    </td>
+    </tr>  
+  <tr>
+    <td>
+      <img src="<%= photo.image %>" width="300">
+    </td>
+    </tr>  
+  </tr>
+  <tr>
+    <td>
+      <%= photo.address %>
+    </td>
+    </tr>  
+  </tr>
+  <% end %>
+   </table
+   
+ </div>
+ 
+
+</dl>

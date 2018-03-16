@@ -1,0 +1,55 @@
+<h1>
+  All rentals
+</h1>
+
+<a href="/photos/new">
+  Add listing
+</a>
+
+<hr>
+  <% @photos.each do |photo| %>
+
+  <div class="card mb-3 mx-auto" style="width: 40rem;">
+  <h3 class="card-header"><%= photo.caption %></h3>
+  <div class="card-body">
+    <h5 class="card-title"><%= photo.address %></h5>
+     <h6 class="card-subtitle text-muted"><%= number_to_currency(photo.rent) %></h6>
+  </div>
+  <img style="height: 100%; width: 100%; display: block;" src="<%= photo.image %>" alt="Card image">
+  <div>
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click to Like">
+      <i class="button far fa-heart"></i>
+      </button>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= photo.description %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Feature tags here</li>
+    <li class="list-group-item">Available from <%= photo.start_date %> to <%= photo.end_date %></li>
+  </ul>
+  <div class="card-body">
+    <a href="/photos/<%= photo.id %>" class="card-link">
+      <button type="button" class="btn btn-secondary">
+        Show Details
+        </a>
+         </button>
+    <% if current_user.id == photo.user_id %>
+      <a href="/photos/<%= photo.id %>/edit">
+        <button type="button" class="btn btn-secondary">
+        Edit Photo
+        
+      </a>
+      </button>
+      <a href="/delete_photo/<%= photo.id %>">
+        <button type="button" class="btn btn-secondary">Delete photo
+      </a>
+      </button>
+      <% end %>
+  </div>
+  
+  <div class="card-footer text-muted">
+    <%= time_ago_in_words(photo.updated_at) %> ago
+  </div>
+</div>
+<% end %>

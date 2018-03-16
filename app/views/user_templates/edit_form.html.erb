@@ -1,0 +1,20 @@
+<h1>
+  <%= current_user.username %> details
+</h1>
+
+Edit Profile
+<hr>
+
+<form action="/update_user/<%= @user.id %>" method="post">
+  <div class="form-group">
+    <label for="Username">
+      Username
+    </label>
+    
+    <input type="text" id="Username" name="Username" class="form-control" value="<%= @user.username %>">
+  </div>
+  
+  <button class="btn btn-block btn-outline-secondary">
+    Update user profile
+  </button>
+  </form>
